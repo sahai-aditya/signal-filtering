@@ -8,7 +8,7 @@ A hands-on comparison of four classic digital filters (**First-Order Low-Pass**,
 
 |Phase|Description|Status|
 |-|-|-|
-|1|Generate noisy synthetic sine data|⬜ Planned|
+|1|Generate noisy synthetic sine data|✅ Done|
 |2|Implement first-order low-pass filter|⬜ Planned|
 |3|Implement moving average filter|⬜ Planned|
 |4|Implement complementary filter|⬜ Planned|
@@ -60,6 +60,12 @@ Compile all graphs, metric tables, and observations from the synthetic and real-
 |**Drift / bias rejection**|Error growth over time when the gyroscope has a constant bias|
 |**Computational cost**|Time per sample and memory used (relevant for microcontrollers)|
 |**Parameter sensitivity**|How performance changes as α, N, β, Q, and R are varied|
+
+
+
+## Author
+
+**Aditya Sahai**, M.Sc. Physics + B.E. Mechanical Engineering, BITS Pilani
 
 
 
