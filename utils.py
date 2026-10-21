@@ -7,9 +7,7 @@ import matplotlib.pyplot as plt
 
 
 def generate_data(start=0, end=2*PI, N=100, A=2):
-    """
-    Adds noise to a synthetic sine function and returns list of (x, y) points.
-    """
+    """Adds noise to a synthetic sine function and returns list of (x, y) points."""
     h = (end - start) / N
     noise_amp = 0.5 * A    # maximum noise that can be added
 
