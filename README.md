@@ -10,7 +10,7 @@ A hands-on comparison of four classic digital filters (**First-Order Low-Pass**,
 |-|-|-|
 |1|Generate noisy synthetic sine data|✅ Done|
 |2|Implement moving average filter|✅ Done|
-|3|Implement first-order low-pass filter|⬜ Planned|
+|3|Implement first-order low-pass filter|✅ Done|
 |4|Implement complementary filter|⬜ Planned|
 |5|Implement 1D Kalman filter|⬜ Planned|
 |6|Compare all filters (noise, lag, and more)|⬜ Planned|

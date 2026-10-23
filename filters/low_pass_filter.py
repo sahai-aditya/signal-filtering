@@ -9,7 +9,7 @@ class LowPassFilter:
     stored and real-time data.
     """
 
-    def __init__(self, alpha):
+    def __init__(self, alpha: float):
         if not 0 <= alpha < 1:
             raise ValueError(f"alpha must be [0, 1), got {alpha} . . .")
 
