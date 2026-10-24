@@ -13,7 +13,7 @@ A hands-on comparison of four classic digital filters (**First-Order Low-Pass**,
 |3|Implement first-order low-pass filter|✅ Done|
 |4|Implement complementary filter|✅ Done|
 |5|Implement 1D Kalman filter|✅ Done|
-|6|Compare all filters (noise, lag, and more)|⬜ Planned|
+|6|Compare all filters (RMSE, lag, residual noise, amplitude attenuation)|🛠️ In Progress|
 |7|Compile results into `results/results.pdf`|⬜ Planned|
 
 

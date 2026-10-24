@@ -9,9 +9,12 @@ import matplotlib.pyplot as plt
 RATE_NOISE_FRAC = 0.2
 POSITION_NOISE_FRAC = 0.5
 AMPLITUDE = 2
+START = 0
+END = 2 * PI
+N = 100
 
 
-def generate_data(start=0, end=2*PI, N=100, A=AMPLITUDE, position_noise_frac=POSITION_NOISE_FRAC):
+def generate_data(start=START, end=END, N=N, A=AMPLITUDE, position_noise_frac=POSITION_NOISE_FRAC):
     """Adds noise to a synthetic sine function and returns tuple of the form: (([x1, x2, ..., xN], [y1, y2, ... yN]), dx)"""
     dx = (end - start) / N
     noise_amp = position_noise_frac * A
