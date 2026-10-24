@@ -11,8 +11,8 @@ A hands-on comparison of four classic digital filters (**First-Order Low-Pass**,
 |1|Generate noisy synthetic sine data|✅ Done|
 |2|Implement moving average filter|✅ Done|
 |3|Implement first-order low-pass filter|✅ Done|
-|4|Implement complementary filter|⬜ Planned|
-|5|Implement 1D Kalman filter|⬜ Planned|
+|4|Implement complementary filter|✅ Done|
+|5|Implement 1D Kalman filter|✅ Done|
 |6|Compare all filters (noise, lag, and more)|⬜ Planned|
 |7|Apply filters to real-time MPU-6050 data|⬜ Planned|
 |8|Compile results into `results/results.pdf`|⬜ Planned|
@@ -22,19 +22,19 @@ A hands-on comparison of four classic digital filters (**First-Order Low-Pass**,
 ## Phase Descriptions
 
 **Phase 1: Synthetic Data Generation**
-Generate a clean sine wave as ground truth. Add Gaussian noise using a fixed random seed, so every filter is tested on identical data.
+Generate a clean sine wave as ground truth. Add uniform random noise to simulate a noisy sensor reading.
 
-**Phase 2: First-Order Low-Pass Filter**
-Smooth the noisy signal with exponential smoothing. Study how the smoothing factor α trades noise suppression against lag.
-
-**Phase 3: Moving Average Filter**
+**Phase 2: Moving Average Filter**
 Average the last N samples. Observe how the window size affects smoothness and delay.
+
+**Phase 3: First-Order Low-Pass Filter**
+Smooth the noisy signal with exponential smoothing. Study how the smoothing factor α trades noise suppression against lag.
 
 **Phase 4: Complementary Filter**
 Fuse two simulated sources with complementary noise behaviour: a noisy "accelerometer" signal and a biased, noisy "gyroscope" rate signal.
 
 **Phase 5: Kalman Filter**
-Implement a 1D Kalman filter. Tune the process noise (Q) and measurement noise (R) to balance smoothness and responsiveness.
+Implement a 1D Kalman filter that fuses the same two sources. Estimate the rate bias, measurement noise (R) and process noise (Q) from stationary calibration readings, and compute the gain at every step.
 
 **Phase 6: Filter Comparison**
 Run all filters on the same data and evaluate each one using the metrics below. Then plot the results side by side with Matplotlib.

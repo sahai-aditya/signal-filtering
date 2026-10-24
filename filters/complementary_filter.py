@@ -14,11 +14,11 @@ class ComplementaryFilter:
     """
     def __init__(self, beta: float):
         if not 0 < beta < 1:
-            raise ValueError(f"beta must be [0, 1), got {beta}")
+            raise ValueError(f"beta must be (0, 1), got {beta}.")
 
         self.beta = beta
         self.bias = None
-        self.last_estimate = None
+        self.prev_pos = None
 
     def calibrate(self, stationary_rates: list):
         """Estimate the rate bias from readings taken while x is not changing."""
@@ -35,14 +35,21 @@ class ComplementaryFilter:
         vm: measured rate of change of x (dx/dt)
         dt: time since the previous sample
         """
-        if self.last_estimate is None:
-            self.last_estimate = xm
+        if self.bias is None:
+            raise RuntimeError("Call calibrate() before update.")
+
+        if self.prev_pos is None:
+            self.prev_pos = xm
             return xm
 
         vc = vm - self.bias # get the unbiased rate
-        
-        x_pred = self.last_estimate + vc * dt
+
+        x_pred = self.prev_pos + vc * dt
         clean_val = self.beta * x_pred + (1 - self.beta) * xm
 
-        self.last_estimate = clean_val
+        self.prev_pos = clean_val
         return clean_val
+
+    def reset(self):
+        """Forget the filter's history; keep the calibration."""
+        self.prev_pos = None

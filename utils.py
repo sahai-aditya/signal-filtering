@@ -6,35 +6,44 @@ from random import random
 import matplotlib.pyplot as plt
 
 
-def generate_data(start=0, end=2*PI, N=100, A=2):
-    """Adds noise to a synthetic sine function and returns list of the form: [[x1, x2, ..., xN], [y1, y2, ... yN]]"""
-    h = (end - start) / N
-    noise_amp = 0.5 * A    # maximum noise that can be added
-
-    x_points = [start + i * h for i in range(0, N + 1)]
-    y_points = [(A * sin(x) + (random() - 0.5) * noise_amp) for x in x_points]
-
-    return (x_points, y_points)
+RATE_NOISE_FRAC = 0.2
+POSITION_NOISE_FRAC = 0.5
+AMPLITUDE = 2
 
 
-def simulate_calibration(N=20, A=2):
+def generate_data(start=0, end=2*PI, N=100, A=AMPLITUDE, position_noise_frac=POSITION_NOISE_FRAC):
+    """Adds noise to a synthetic sine function and returns tuple of the form: (([x1, x2, ..., xN], [y1, y2, ... yN]), dx)"""
+    dx = (end - start) / N
+    noise_amp = position_noise_frac * A
+
+    x_points = [start + i * dx for i in range(0, N + 1)]
+    y_points = [A * sin(x) + (random() - 0.5) * noise_amp for x in x_points]
+
+    return (x_points, y_points), dx
+
+
+def simulate_calibration(N=200, A=AMPLITUDE, position_noise_frac=POSITION_NOISE_FRAC, rate_noise_frac=RATE_NOISE_FRAC):
     """
-    Returns a list of rate values with some artificial noise and a bias.
-    Here x represents t and y represents v (or dx/dt).
+    Returns tuple containing rate values list (some noise and bias) and position values list (noise, no bias)
+    and the bias.
     """
     bias = random() * 0.25  # will give a random value: [0, 0.25)
-    noise_amp = 0.2 * A     # noise amplitude in sensor, has to match with value used in generate_rates
+    rate_noise_amp = rate_noise_frac * A
+    position_noise_amp = position_noise_frac * A
 
-    rate_values = [((random() - 0.5) * noise_amp + bias) for _ in range(N)]
+    rate_values = [(random() - 0.5) * rate_noise_amp + bias for _ in range(N)]
+
+    phase = random() * 2 * PI
+    position_values = [A * sin(phase) + (random() - 0.5) * position_noise_amp for _ in range(N)]
     
-    return rate_values, bias
+    return rate_values, position_values, bias
 
 
-def generate_rates(bias, x_points, A=2):
-    """Adds noise to a synthetic cosine function and returns list of the form: [[x1, x2, ..., xN], [y1, y2, ... yN]]"""
-    noise_amp = 0.2 * A    # maximum noise that can be added
+def generate_rates(bias, x_points, A=AMPLITUDE, rate_noise_frac=RATE_NOISE_FRAC):
+    """Adds noise to a synthetic cosine function and returns tuple of the form: ([x1, x2, ..., xN], [y1, y2, ... yN])"""
+    noise_amp = rate_noise_frac * A
 
-    y_points = [(A * cos(x) + (random() - 0.5) * noise_amp + bias) for x in x_points]
+    y_points = [A * cos(x) + (random() - 0.5) * noise_amp + bias for x in x_points]
 
     return (x_points, y_points)
 
@@ -42,7 +51,7 @@ def generate_rates(bias, x_points, A=2):
 def display_individual_filter(raw_data, filtered_data, title, label, filename=None):
     """
     Displays raw data and processed data together in a single graph.
-    Will also save the graph as .png if 'save' set to True.
+    Will also save the graph as .png if filename given.
     """
     fig, ax = plt.subplots(figsize=(8, 5))
 
@@ -62,9 +71,3 @@ def display_individual_filter(raw_data, filtered_data, title, label, filename=No
         fig.savefig(f"results/{filename}.png", dpi=300, bbox_inches="tight")
 
     plt.show()
-
-
-if __name__ == "__main__":
-    raw = generate_data()
-    clean = [raw[0][:], [(sin(x)) for x in raw[0]]]
-    display_individual_filter(raw, clean, "Clean", "clean")
