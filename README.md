@@ -1,6 +1,6 @@
-# Signal Filtering: From Synthetic Noise to the MPU-6050
+# Signal Filtering: Comparing Classic Filters on Synthetic Data
 
-A hands-on comparison of four classic digital filters (**First-Order Low-Pass**, **Moving Average**, **Complementary**, and **Kalman**), first on a noisy synthetic sine wave and then on real-time data from an **MPU-6050 IMU**.
+A hands-on comparison of four classic digital filters (**First-Order Low-Pass**, **Moving Average**, **Complementary**, and **Kalman**), on a noisy synthetic sine wave. The filters will later be applied to real-time data from an **MPU-6050 IMU** in a separate GitHub repository (link coming soon).
 
 
 
@@ -14,8 +14,7 @@ A hands-on comparison of four classic digital filters (**First-Order Low-Pass**,
 |4|Implement complementary filter|✅ Done|
 |5|Implement 1D Kalman filter|✅ Done|
 |6|Compare all filters (noise, lag, and more)|⬜ Planned|
-|7|Apply filters to real-time MPU-6050 data|⬜ Planned|
-|8|Compile results into `results/results.pdf`|⬜ Planned|
+|7|Compile results into `results/results.pdf`|⬜ Planned|
 
 
 
@@ -39,11 +38,8 @@ Implement a 1D Kalman filter that fuses the same two sources. Estimate the rate 
 **Phase 6: Filter Comparison**
 Run all filters on the same data and evaluate each one using the metrics below. Then plot the results side by side with Matplotlib.
 
-**Phase 7: MPU-6050 Real-Time Filtering**
-Read live accelerometer and gyroscope data from the MPU-6050 over I²C. Apply the filters to estimate tilt angles, and plot raw vs filtered data in real time.
-
-**Phase 8: Results Report**
-Compile all graphs, metric tables, and observations from the synthetic and real-sensor tests into `results/results.pdf`.
+**Phase 7: Results Report**
+Compile all graphs, metric tables, and observations from the synthetic tests into `results/results.pdf`.
 
 
 
