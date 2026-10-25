@@ -1,2 +1,7 @@
 venv/
 __pycache__/
+results/*.aux
+results/*.log
+results/*.out
+results/*.fls
+results/*.fdb_latexmk

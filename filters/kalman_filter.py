@@ -22,6 +22,8 @@ class KalmanFilter:
         self.prev_pos = None
         self.prev_uncertainty = None
 
+        self.gains = []
+
     def calibrate(self, stationary_rates: list, stationary_positions: list):
         """
         Computes bias, R and Q using the stationary sensor readings.
@@ -74,6 +76,7 @@ class KalmanFilter:
 
         self.prev_pos = clean_val
         self.prev_uncertainty = p
+        self.gains.append(k)
 
         return clean_val
 

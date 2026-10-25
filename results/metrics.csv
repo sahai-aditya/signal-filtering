@@ -1,0 +1,6 @@
+Filter,RMSE,Lag (rad),Residual Noise,Attenuation
+Raw Signal,0.2968,0.0000,0.2972,1.1684
+Moving Average Filter,0.4023,0.3142,0.1054,0.9989
+Low Pass Filter,0.3777,0.2513,0.1206,0.9884
+Complementary Filter,0.0589,0.0000,0.0587,0.9830
+Kalman Filter,0.0954,0.0000,0.0823,0.9650

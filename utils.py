@@ -1,3 +1,11 @@
+"""
+Synthetic data generation and plotting helpers.
+
+Creates the noisy sine (position), the biased noisy cosine (rate) and the
+stationary calibration readings, and plots a single filter against the raw
+signal. Shared constants (amplitude, noise levels, range) live here.
+"""
+
 from math import pi as PI
 from math import sin, cos
 
